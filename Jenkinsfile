@@ -10,18 +10,19 @@ pipeline {
 
         stage('Dev_Test'){
             steps {
-                input '等待开发人员测试通过，通过后再继续'
+                input  '等待开发人员测试通过，通过后再继续...'
             }
         }
 
         stage('QA_Test') {
             steps {
                 echo '执行自动化部署...'
-                bat 'python d:/autodeploy.py'
+                bat 'python E:/autodeploy.py'
                 echo '执行自动化测试...'
 
-                dir ('d:\\projects\\sonqqin\\restapi-autotest') {
+                dir ('E:\\pcode') {
                     bat 'robot --pythonpath . --name build_%BUILD_NUMBER% -L debug tc'
+
                 }
 
             }
